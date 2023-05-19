@@ -5,11 +5,18 @@ from .models import Places, Orders, Message
 from .form import PlaceForm, OrderForm, MessageForm
 
 # Create your views here.
-class admin(View):
+class Admin(View):
     def get(self, request):
-        return render(request, 'indexAdmin.html')
+        place = Places.objects.values().count()
+        order = Orders.objects.values().count()
+        message = Message.objects.values().count()
+        return render(request, 'indexAdmin.html', {
+            'num_places': place,
+            'num_orders': order,
+            'num_messages': message
+        })
 
-class adminPlaces(View):
+class AdminPlaces(View):
     def get(self, request):
         lugares = Places.objects.values()
         form = PlaceForm()
@@ -32,16 +39,28 @@ class adminPlaces(View):
         else:
             print("Error")
         return redirect('places')
-
-    def delete(self, request, id):
+    
+    def show(request, id):
+         place = Places.objects.values().get(id=id)
+         return render(request, 'placesInfoAdmin.html', {
+             'place': place,
+         })
+         
+    def delete(request, id):
         place = Places.objects.get(id=id)
         place.delete()
         return redirect('places')
 
-class adminOrders(View):
+class AdminPlaceDelete(View):
+    def get(self, request, id):
+        place = Places.objects.get(id=id)
+        place.delete()
+        return redirect('places')
+
+class AdminOrders(View):
     def get(self, request):
         return render(request, 'ordersAdmin.html')
-    
-class adminMessages(View):
+
+class AdminMessages(View):
     def get(self, request):
         return render(request, 'messagesAdmin.html')

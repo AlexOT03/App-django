@@ -1,11 +1,11 @@
 from django.urls import path
-from django.views.generic import TemplateView
-from . import views
+from .views import Admin, AdminPlaces, AdminOrders, AdminMessages
 
 urlpatterns = [
-    path('admin/', views.admin.as_view(), name="admin"),
-    path('admin/places', views.adminPlaces.as_view(), name="places"),
-    path('admin/places/delete/<id>', views.adminPlaces.as_view(), name="placesDelete"),
-    path('admin/orders', views.adminOrders.as_view(), name="orders"),
-    path('admin/messages', views.adminMessages.as_view(), name="messages"),
+    path('admin/', Admin.as_view(), name="admin"),
+    path('admin/places/', AdminPlaces.as_view(), name="places"),
+    path('admin/places/info/<id>', AdminPlaces.show, name="placeInfo"),
+    path('admin/places/delete/<id>', AdminPlaces.delete, name="placeDelete"),
+    path('admin/orders/', AdminOrders.as_view(), name="orders"),
+    path('admin/messages/', AdminMessages.as_view(), name="messages"),
 ]

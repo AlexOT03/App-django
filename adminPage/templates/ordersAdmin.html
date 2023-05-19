@@ -30,7 +30,7 @@
         <div class="row">
             <h2>Orders of Events</h2>
             <div class="col">
-                <form action="" class="d-flex" role="search">
+                <form method="get" class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
@@ -38,10 +38,12 @@
         </div>
         <div class="row">
             <div class="col">
-                hh
-            </div>
-            <div class="col">
-                hh
+                {% for order in orders %}
+                    <p>{{ order.id }}</hp>
+                    <p>{{ order.date }}</p>
+                {% empty %}
+                <p>No se encontraron resultados.</p>
+                {% endfor %}
             </div>
         </div>
     </div>
