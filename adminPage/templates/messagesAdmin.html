@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Messages{% endblock %}
+
+{% block nav_li %}
+<li class="nav-item">
+    <a href="{% url 'admin' %}" class="nav-link text-white">
+        Home
+    </a>
+</li>
+<li>
+    <a href="{% url 'orders' %}" class="nav-link text-white">
+        Orders
+    </a>
+</li>
+<li>
+    <a href="{% url 'places' %}" class="nav-link text-white">
+        Places
+    </a>
+</li>
+<li>
+    <a href="{% url 'messages' %}" class="nav-link active" aria-current="page">
+        Messages
+    </a>
+</li>
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center py-4">
+
+    </div>
+{% endblock %}

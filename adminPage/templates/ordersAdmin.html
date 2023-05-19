@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Orders{% endblock %}
+
+{% block nav_li %}
+<li class="nav-item">
+    <a href="{% url 'admin' %}" class="nav-link text-white">
+        Home
+    </a>
+</li>
+<li>
+    <a href="{% url 'orders' %}" class="nav-link active" aria-current="page">
+        Orders
+    </a>
+</li>
+<li>
+    <a href="{% url 'places' %}" class="nav-link text-white">
+        Places
+    </a>
+</li>
+<li>
+    <a href="{% url 'messages' %}" class="nav-link text-white">
+        Messages
+    </a>
+</li>
+{% endblock %}
+
+{% block content %} 
+    <div class="container px-4 py-4">
+        <div class="row">
+            <div class="col">
+                <form action="" class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

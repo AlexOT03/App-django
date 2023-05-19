@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block nav_li %}
+<li class="nav-item">
+    <a href="{% url 'admin' %}" class="nav-link active" aria-current="page">
+        Home
+    </a>
+</li>
+<li>
+    <a href="{% url 'orders' %}" class="nav-link text-white">
+        Orders
+    </a>
+</li>
+<li>
+    <a href="{% url 'places' %}" class="nav-link text-white">
+        Places
+    </a>
+</li>
+<li>
+    <a href="{% url 'messages' %}" class="nav-link text-white">
+        Messages
+    </a>
+</li>
+{% endblock %}
+
+{% block content %}
+    <div class="container text-center py-4">
+        <div class="row">
+            <div class="col-md-auto">
+                Welcome: user_name
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                this is a card with more info
+            </div>
+            <div class="col">
+                this is a card with more info
+            </div>
+            <div class="col">
+                this is a card with more info
+            </div>
+        </div>
+    </div>
+{% endblock %}
