@@ -26,21 +26,35 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container text-center py-4">
+    <div class="container px-4 py-4">
         <div class="row">
-            <div class="col-md-auto">
-                Welcome: user_name
-            </div>
+            <h1>Welcome {{ username }}</h1>
+            <p>Access level: {{ access_level }}</p>
         </div>
         <div class="row">
             <div class="col">
-                this is a card with more info
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <p class="text-primary-emphasis">{{ num_orders }}</p>
+                    </div>
+                </div>
             </div>
             <div class="col">
-                this is a card with more info
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Places</h5>
+                        <p class="text-primary-emphasis">{{ num_places }}</p>
+                    </div>
+                </div>
             </div>
             <div class="col">
-                this is a card with more info
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Messages</h5>
+                        <p class="text-primary-emphasis">{{ num_messages }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
