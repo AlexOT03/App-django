@@ -7,13 +7,14 @@ from .form import PlaceForm, OrderForm, MessageForm
 # Create your views here.
 class Admin(View):
     def get(self, request):
-        place = Places.objects.values().count()
-        order = Orders.objects.values().count()
-        message = Message.objects.values().count()
+        place = Places.objects.values().order_by('-id')
+        order = Orders.objects.values()
+        message = Message.objects.values()
         return render(request, 'indexAdmin.html', {
-            'num_places': place,
-            'num_orders': order,
-            'num_messages': message
+            'num_places': place.count(),
+            'num_orders': order.count(),
+            'num_messages': message.count(),
+            'messages': message
         })
 
 class AdminPlaces(View):
