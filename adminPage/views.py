@@ -18,7 +18,7 @@ class Admin(View):
 
 class AdminPlaces(View):
     def get(self, request):
-        lugares = Places.objects.values()
+        lugares = Places.objects.values().order_by('id')
         form = PlaceForm()
         return render(request, 'placesAdmin.html', {
             'form': form,
@@ -49,6 +49,28 @@ class AdminPlaces(View):
     def delete(request, id):
         place = Places.objects.get(id=id)
         place.delete()
+        return redirect('places')
+
+class AdminPlacesEdit(View):
+    def get(self, request, id):
+        place = Places.objects.get(id=id)
+        form = PlaceForm(initial={'name':place.name, 'location':place.location, 'owner':place.owner, 'capacity':place.capacity, 'price':place.price, 'description':place.description})
+        return render(request, 'placesEditAdmin.html', {
+            'form': form,
+            'place': place,
+        })
+    
+    def post(self, request, id):
+        place = Places.objects.get(id=id)
+        form = PlaceForm(request.POST)
+        if form.is_valid():
+            place.name = request.POST.get('name')
+            place.location = request.POST.get('location')
+            place.owner = request.POST.get('owner')
+            place.capacity = request.POST.get('capacity')
+            place.price = request.POST.get('price')
+            place.description = request.POST.get('description')
+            place.save()
         return redirect('places')
 
 class AdminPlaceDelete(View):
