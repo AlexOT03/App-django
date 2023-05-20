@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Messages{% endblock %}
+{% block title %}Info "Message of {{ message.name }}"{% endblock %}
 
 {% block nav_li %}
 <li class="nav-item">
@@ -30,17 +30,17 @@
         <div class="row">
             <h2>Messages</h2>
             <div class="col">
-                {% for message in messages %}
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Affair: {{ message.affair }}</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Date: {{ message.date }}</h6>
+                        <h4 class="card-title">Affair: {{ message.affair }}</h4>
+                        <h5 class="card-subtitle mb-2 text-body-secondary">Date: {{ message.date }}</h5>
                         <p class="card-text">Person: {{ message.name }}</p>
-                        <a href="{% url 'messageInfo' message.id %}" class="btn btn-outline-info">More</a>
+                        <p class="card-text">Email: {{ message.email }}</p>
+                        <p class="card-text">Message: {{ message.message }}</p>
+                        <a href="" class="btn btn-outline-info">Answer</a>
                         <a href="{% url 'messageDelete' message.id %}" class="btn btn-outline-danger">Delete</a>
                     </div>
                 </div>
-                {% endfor %}
         </div>
     </div>
 {% endblock %}

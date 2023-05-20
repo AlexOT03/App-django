@@ -73,16 +73,24 @@ class AdminPlacesEdit(View):
             place.save()
         return redirect('places')
 
-class AdminPlaceDelete(View):
-    def get(self, request, id):
-        place = Places.objects.get(id=id)
-        place.delete()
-        return redirect('places')
-
 class AdminOrders(View):
     def get(self, request):
         return render(request, 'ordersAdmin.html')
 
 class AdminMessages(View):
     def get(self, request):
-        return render(request, 'messagesAdmin.html')
+        messages = Message.objects.values()
+        return render(request, 'messagesAdmin.html', {
+            'messages': messages
+        })
+    
+    def show(request, id):
+        message = Message.objects.values().get(id=id)
+        return render(request, 'messagesAdminInfo.html', {
+            'message': message
+        })
+    
+    def delete(request, id):
+        message = Message.objects.get(id=id)
+        message.delete()
+        return redirect('messages')
